@@ -8,7 +8,7 @@ export class Room{
     roomId: string;
     @Column('text')
     roomName: string;
-    @Column('number')
+    @Column('int')
     roomCapacity: number;
     @Column('text')
     roomType: string;

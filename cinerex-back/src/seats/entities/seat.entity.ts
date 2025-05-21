@@ -8,7 +8,7 @@ export class Seat{
     seatId: string;
     @Column('text')
     seatRow: string;
-    @Column('number')
+    @Column('int')
     seatNumber: number;
 
     @ManyToOne(() => Room, (room) => room.seats)

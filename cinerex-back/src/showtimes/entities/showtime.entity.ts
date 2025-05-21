@@ -9,7 +9,7 @@ export class Showtime{
     showtimeId: string;
     @Column('date')
     showtimeDate: Date;
-    @Column('number')
+    @Column('int')
     price: number;
 
     @ManyToOne(() => Movie, (movie) => movie.showtimes)

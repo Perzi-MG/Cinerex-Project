@@ -10,7 +10,7 @@ export class Movie{
     movieTitle: string;
     @Column('text')
     movieDescription: string;
-    @Column('number')
+    @Column('int')
     movieDuration: number;
     @Column('text')
     movieRating: string;
