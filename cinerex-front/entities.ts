@@ -46,6 +46,7 @@ export interface Showtime{
     showtimeId: string;
     showtimeDate: string;
     price: number;
+    ocupiedSeats: Array<string>
     movie: Movie;
     room?: Room;
     tickets?: Ticket[];
