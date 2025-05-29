@@ -4,7 +4,9 @@ import { CreateClientDto } from './dto/create-client.dto';
 import { UpdateClientDto } from './dto/update-client.dto';
 import { Auth } from 'src/auth/Decorators/auth.decorator';
 import { ROLES } from 'src/auth/constants/roles.constants';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Clientes')
 @Controller('clientes')
 export class ClientesController {
 
@@ -12,10 +14,10 @@ export class ClientesController {
 
     @Post()
     async create(@Body() createClientDto: CreateClientDto){
+        console.log(createClientDto)
         return this.clientsService.create(createClientDto);
     }
 
-    @Auth(ROLES.ADMIN)
     @Get()
     findAll(){
         return this.clientsService.findAll();

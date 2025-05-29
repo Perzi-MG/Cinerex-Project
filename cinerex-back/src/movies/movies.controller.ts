@@ -16,14 +16,10 @@ export class MoviesController {
     create(@Body() createMovieDto: CreateMovieDto){
         return this.moviesService.create(createMovieDto)
     }
-
-    @Auth(ROLES.ADMIN, ROLES.MANAGER, ROLES.CLIENT)
     @Get()
     findAll(){
         return this.moviesService.findAll();
     }
-
-    @Auth(ROLES.ADMIN, ROLES.MANAGER, ROLES.CLIENT)
     @Get(':id')
     findOne(@Param('id') id:string){
         return this.moviesService.findOne(id)

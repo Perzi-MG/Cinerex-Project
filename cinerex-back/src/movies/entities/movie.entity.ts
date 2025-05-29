@@ -17,7 +17,7 @@ export class Movie{
     @Column('text')
     moviePhoto: string;
     @Column('boolean')
-    isActive: string;
+    isActive: boolean;
 
     @OneToMany(() => Showtime, (showtime) => showtime.movie)
     showtimes: Showtime[];

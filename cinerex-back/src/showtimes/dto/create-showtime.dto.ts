@@ -1,8 +1,12 @@
-import { IsDate, IsNumber } from "class-validator";
+import { IsArray, IsDate, IsNumber, IsString } from "class-validator";
 
 export class CreateShowtimeDto{
-    @IsDate()
-    showtimeDate: Date;
+    @IsString()
+    showtimeDate: string;
     @IsNumber()
     price: number;
+    @IsString()
+    movieId: string;
+    @IsArray()
+    ocupiedSeat?: string[]
 }

@@ -17,5 +17,5 @@ export class User {
     userRoles: string[];
 
     @OneToMany(() => Ticket, (ticket) => ticket.user)
-    tickets: Ticket[];
+    tickets?: Ticket[];
 }

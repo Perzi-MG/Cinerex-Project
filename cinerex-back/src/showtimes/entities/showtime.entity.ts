@@ -8,16 +8,18 @@ export class Showtime{
     @PrimaryGeneratedColumn('uuid')
     showtimeId: string;
     @Column('date')
-    showtimeDate: Date;
+    showtimeDate: string;
     @Column('int')
     price: number;
+    @Column('simple-array', {nullable: true})
+    ocupiedSeats?: string[];
 
     @ManyToOne(() => Movie, (movie) => movie.showtimes)
     movie: Movie;
 
     @ManyToOne(() => Room, (room) => room.showtimes)
-    room: Room;
+    room?: Room;
 
     @OneToMany(() => Ticket, (ticket) => ticket.showtime)
-    tickets: Ticket[];
+    tickets?: Ticket[];
 }

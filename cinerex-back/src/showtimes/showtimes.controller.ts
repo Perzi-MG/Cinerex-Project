@@ -18,13 +18,11 @@ export class ShowtimesController {
         return this.showtimesService.create(createShowtimeDto);
     }
 
-    @Auth(ROLES.ADMIN, ROLES.MANAGER, ROLES.CLIENT)
     @Get()
     findAll(){
         return this.showtimesService.findAll();
     }
 
-    @Auth(ROLES.ADMIN, ROLES.MANAGER, ROLES.CLIENT)
     @Get(':id')
     findOne(@Param('id') id: string){
         return this.showtimesService.findOne(id);

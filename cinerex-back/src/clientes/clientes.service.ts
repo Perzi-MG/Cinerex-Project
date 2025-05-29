@@ -15,6 +15,7 @@ export class ClientesService {
 
     create(createClientDto: CreateClientDto){
         const client =  this.clientRepository.save(createClientDto);
+        console.log(client)
         return client;
     }
 

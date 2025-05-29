@@ -14,6 +14,6 @@ export class CreateMovieDto {
     @IsString()
     moviePhoto: string;
     @IsBoolean()
-    isActive: string;
+    isActive: boolean;
 
 }
