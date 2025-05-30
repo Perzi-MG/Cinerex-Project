@@ -6,10 +6,12 @@ export default function ShowtimeForm({
     selectedShowtimeId,
     onSelectShowtime,
 }: {
-    showtimes?: Showtime[];
+    showtimes?: Showtime[] | undefined;
     selectedShowtimeId?: string;
     onSelectShowtime: (id: string) => void;
 }) {
+    const showtimeArray = Array.isArray(showtimes) ? showtimes : [];
+
     return (
         <div className="flex flex-col gap-5">
             <h1 className="font-bold text-white text-xl">Horarios</h1>
@@ -24,7 +26,7 @@ export default function ShowtimeForm({
                     onSelectShowtime(id);
                 }}
             >
-                {showtimes.map((showtime: Showtime) => (
+                {showtimeArray.map((showtime: Showtime) => (
                     <SelectItem key={String(showtime.showtimeId)}>
                         {showtime.showtimeDate}
                     </SelectItem>

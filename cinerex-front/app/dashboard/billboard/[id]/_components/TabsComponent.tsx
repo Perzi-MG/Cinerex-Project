@@ -7,11 +7,12 @@ import React from "react";
 import SeatsTable from "./SeatsTable";
 
 export default function TabsComponent({ movie, showtime = [] }: { movie: Movie, showtime: Showtime[] }) {
+    const showtimeArray = Array.isArray(showtime) ? showtime : [];
     const [selected, setSelected] = React.useState("horarios");
-    const [selectedShowtimeId, setSelectedShowtimeId] = React.useState<string | undefined>(showtime[0]?.showtimeId);
+    const [selectedShowtimeId, setSelectedShowtimeId] = React.useState<string | undefined>(showtimeArray[0]?.showtimeId);
 
     // Encuentra el showtime seleccionado
-    const selectedShowtime = showtime.find(s => s.showtimeId === selectedShowtimeId);
+    const selectedShowtime = showtimeArray.find(s => s.showtimeId === selectedShowtimeId);
 
     return (
         <Tabs
@@ -29,7 +30,7 @@ export default function TabsComponent({ movie, showtime = [] }: { movie: Movie, 
                     onSelectShowtime={setSelectedShowtimeId}
                 />
                 {selectedShowtime && (
-                    <SeatsTable showtime={selectedShowtime} />
+                    <SeatsTable movie = {movie} showtime={selectedShowtime} />
                 )}
             </Tab>
         </Tabs>
