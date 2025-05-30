@@ -1,10 +1,9 @@
-import { IsNumber } from "class-validator";
+import { IsNumber, IsString } from "class-validator";
 
 export class CreateTicketDto{
-    @IsNumber()
-    showtimeId?: number | undefined;
-
-    @IsNumber()
-    seatId?: number | undefined;
+    @IsString()
+    seat: string;
+    @IsString()
+    showtimeId: string;
     
 }

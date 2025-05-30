@@ -1,7 +1,6 @@
 import { Movie } from "src/movies/entities/movie.entity";
-import { Room } from "src/rooms/entities/room.entity";
 import { Ticket } from "src/tickets/entities/ticket.entity";
-import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Showtime{
@@ -13,12 +12,17 @@ export class Showtime{
     price: number;
     @Column('simple-array', {nullable: true})
     ocupiedSeats?: string[];
+    @Column('int')
+    roomNumber: number;
 
     @ManyToOne(() => Movie, (movie) => movie.showtimes)
+    @JoinColumn({
+        name: 'movieId'
+    })
     movie: Movie;
 
-    @ManyToOne(() => Room, (room) => room.showtimes)
-    room?: Room;
+    @Column()
+    movieId: string;
 
     @OneToMany(() => Ticket, (ticket) => ticket.showtime)
     tickets?: Ticket[];

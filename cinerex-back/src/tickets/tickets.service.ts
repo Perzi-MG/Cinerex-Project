@@ -14,7 +14,7 @@ export class TicketsService {
     ){}
 
     create(createTicketDto: CreateTicketDto){
-        const ticket = this.ticketRepository.save(createTicketDto as Partial<Ticket>);
+        const ticket = this.ticketRepository.save(createTicketDto);
         return ticket;
     }
 
@@ -34,7 +34,8 @@ export class TicketsService {
     async update(id: string, updateTicketDto: UpdateTicketDto){
         const ticketToUpdate = await this.ticketRepository.preload({
             ticketId: id,
-            ...updateTicketDto
+            ...updateTicketDto,
+            showtimeId: updateTicketDto.showtimeId !== undefined ? String(updateTicketDto.showtimeId) : undefined
         })
         if(!ticketToUpdate) throw new NotFoundException();
         this.ticketRepository.save(ticketToUpdate);

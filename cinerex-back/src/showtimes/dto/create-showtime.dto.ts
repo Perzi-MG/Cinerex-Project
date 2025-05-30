@@ -1,4 +1,4 @@
-import { IsArray, IsDate, IsNumber, IsString } from "class-validator";
+import { IsArray, IsDate, IsNumber, IsOptional, IsString } from "class-validator";
 
 export class CreateShowtimeDto{
     @IsString()
@@ -7,6 +7,9 @@ export class CreateShowtimeDto{
     price: number;
     @IsString()
     movieId: string;
+    @IsOptional()
     @IsArray()
-    ocupiedSeat?: string[]
+    ocupiedSeats?: string[]
+    @IsNumber()
+    roomNumber: number;
 }
