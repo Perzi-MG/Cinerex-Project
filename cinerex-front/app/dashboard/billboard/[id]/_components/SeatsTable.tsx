@@ -48,7 +48,7 @@ export default function SeatsTable({ movie, showtime }: { movie: Movie, showtime
     };
 
     return (
-        <div className="overflow-x-auto flex flex-col items-center justify-center mb-20">
+        <div className="flex flex-col items-center justify-center mb-20">
             <SeatsGrid
                 rows={rows}
                 cols={cols}
