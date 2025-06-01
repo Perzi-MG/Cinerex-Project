@@ -1,9 +1,17 @@
-import { API_URL } from "@/constants";
+import { API_URL, TOKEN_NAME } from "@/constants";
 import { Movie, Showtime } from "@/entities";
 import TabsComponent from "./_components/TabsComponent";
-import SeatsTable from "./_components/SeatsTable";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function MoviePage({ params }: { params: { id: string } }) {
+    const cookieStore = cookies();
+    const token = (await cookieStore).get(TOKEN_NAME)?.value;
+
+    if(!token){
+        redirect('/login')
+    }
+    
     const { id } = await params;
     const responseMovie = await fetch(`${API_URL}/movies/${id}`, {
         next: {
@@ -16,7 +24,7 @@ export default async function MoviePage({ params }: { params: { id: string } }) 
     const responseShowtime = await fetch(`${API_URL}/showtimes?movieId=${id}`)
     const showtime: Showtime[] = await responseShowtime.json();
     return (
-        <div className="flex flex-col gap-10 justify-center px-64">
+        <div className="flex flex-col gap-10 justify-center items-center">
             <h1 className="text-zinc-500 text-md">Cartelera / <span className="text-white font-bold">{movie.movieTitle}</span></h1>
             <h1 className="text-white font-bold text-4xl">{movie.movieTitle}</h1>
             <TabsComponent movie={movie} showtime={showtime}/>

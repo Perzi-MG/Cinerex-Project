@@ -13,10 +13,9 @@ export default function ShowtimeForm({
     const showtimeArray = Array.isArray(showtimes) ? showtimes : [];
 
     return (
-        <div className="flex flex-col gap-5">
+        <div className="flex flex-col gap-5 w-[25rem]">
             <h1 className="font-bold text-white text-xl">Horarios</h1>
             <Select
-                className="max-w-md"
                 variant="bordered"
                 radius="sm"
                 name="showtime"

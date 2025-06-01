@@ -4,6 +4,8 @@ export interface User {
     userPassword: string;
     userRoles: string[];
     tickets?: Ticket[];
+    userName: string;
+    userLastName: string;
 }
 
 export interface Client {

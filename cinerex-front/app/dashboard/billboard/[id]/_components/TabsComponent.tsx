@@ -23,7 +23,7 @@ export default function TabsComponent({ movie, showtime = [] }: { movie: Movie, 
             <Tab key={'sinopsis'} title="Sinopsis">
                 Parte de Sinopsis
             </Tab>
-            <Tab key={'horarios'} title="Horarios" className="flex flex-col gap-10">
+            <Tab key={'horarios'} title="Horarios" className="flex flex-col gap-10 items-center">
                 <ShowtimeForm
                     showtimes={showtime}
                     selectedShowtimeId={selectedShowtimeId}

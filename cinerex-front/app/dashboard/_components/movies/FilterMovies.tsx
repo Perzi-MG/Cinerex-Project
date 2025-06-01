@@ -9,7 +9,7 @@ export default function BillboardGrid({ movies }: { movies: Movie[] }) {
     const ratings = ["G", "GP", "R", "X"];
 
     return (
-        <div>
+        <div className="flex flex-col items-center justify-center">
             <div className="flex gap-2 mb-4">
                 <button
                     className={`font-thin px-3 py-1 rounded ${rating === undefined ? "bg-blue-600 text-white" : "bg-zinc-700"}`}
