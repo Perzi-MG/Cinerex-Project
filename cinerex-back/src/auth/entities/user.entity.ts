@@ -17,4 +17,8 @@ export class User {
     userRoles: string[];
     @OneToMany(() => Ticket, (ticket) => ticket.user)
     tickets?: Ticket[];
+    @Column('text')
+    userName: string;
+    @Column('text')
+    userLastName: string;
 }

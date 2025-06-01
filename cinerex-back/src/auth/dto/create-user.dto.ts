@@ -19,5 +19,9 @@ export class CreateUserDto{
     })
     @IsOptional()
     @IsIn(["Admin", "Client"])
-    userRoles: string[]
+    userRoles: string[];
+    @IsString()
+    userName: string;
+    @IsString()
+    userLastName: string;
 }

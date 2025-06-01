@@ -21,6 +21,17 @@ export class AuthService {
   }
 
 
+  findOne(id: string){
+    const user = this.userRepository.findOne({
+      where: {
+        userId: id
+      },
+      relations: {
+        tickets: true
+      }
+    })
+    return user;
+  }
   async loginUser(loginUserDto: LoginUserDto) {
     const user = await this.userRepository.findOne({
       where: {
@@ -34,6 +45,7 @@ export class AuthService {
     );
     if (!match) throw new UnauthorizedException("No está autorizado");
     const payload = {
+      userId: user.userId,
       userEmail: user.userEmail,
       userPassword: user.userPassword,
       userRoles: user.userRoles

@@ -4,15 +4,17 @@ import { ShowtimesModule } from './showtimes/showtimes.module';
 import { TicketsModule } from './tickets/tickets.module';
 import { JwtModule } from '@nestjs/jwt';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthService } from './auth/auth.service';
-import { AuthController } from './auth/auth.controller';
 import { AuthModule } from './auth/auth.module';
-import { ClientsService } from './clients/clients.service';
-import { ClientsController } from './clients/clients.controller';
-import { ClientsModule } from './clients/clients.module';
+import { EXPIRES_IN, JWT_KEY } from './auth/constants/jwt.constants';
 
 @Module({
   imports: [
+        JwtModule.register({
+      secret: JWT_KEY,
+      signOptions: {
+        expiresIn: EXPIRES_IN
+      },
+    }),
     TypeOrmModule.forRoot({
       type: 'postgres',
       host: process.env.host,
@@ -24,8 +26,8 @@ import { ClientsModule } from './clients/clients.module';
       autoLoadEntities: true,
       synchronize: true,
   }),
-    MoviesModule, ShowtimesModule, TicketsModule, AuthModule, ClientsModule],
-  controllers: [AuthController, ClientsController],
-  providers: [AuthService, ClientsService],
+    MoviesModule, ShowtimesModule, TicketsModule, AuthModule],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
