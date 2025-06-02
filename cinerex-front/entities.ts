@@ -20,43 +20,28 @@ export interface Movie{
     movieId: string;
     movieTitle: string;
     movieDescription: string;
-    movieDuration: number;
+    movieDuration: string;
     movieRating: string;
     moviePhoto: string;
-    isActive: boolean;
+    isActive: string;
     showtimes: Showtime[];
 }
-
-export interface Room{
-    roomId: string;
-    roomName: string;
-    roomCapacity: number;
-    roomType: string;
-    seats: Seat[];
-    showtimes: Showtime[];
-}
-
-export interface Seat{
-    seatId: string;
-    seatRow: string;
-    seatNumber: number;
-    room: Room;
-    tickets: Ticket[];
-}
-
 export interface Showtime{
     showtimeId: string;
     showtimeDate: string;
-    price: number;
-    ocupiedSeats: Array<string>
-    movie: Movie;
-    room?: Room;
-    tickets?: Ticket[];
+    price: string;
+    ocupiedSeats?: Array<string>
+    roomNumber?: string;
+    movieId: string;
+    movies: Movie
 }
 
 export interface Ticket{
     ticketId: string;
     showtime: Showtime;
-    seat: Seat;
+    seat: string;
     user: User;
+    movieTittle: string;
+    showtimeDate: string;
+    room: number;
 }

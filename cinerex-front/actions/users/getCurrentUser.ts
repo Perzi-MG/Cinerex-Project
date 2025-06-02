@@ -12,6 +12,5 @@ export default async function getCurrentUser() {
     if (!response.ok) return null;
     
     const user: User = await response.json()
-    console.log(user.userName);
     return user;
 }

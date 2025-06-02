@@ -14,7 +14,6 @@ export default function NavBar() {
     useEffect(() => {
         async function loadUser() {
             const userData = await getCurrentUser();
-            console.log("data: " + userData)
             if (userData) {
                 setUser(userData);
                 setIsLogged(true);

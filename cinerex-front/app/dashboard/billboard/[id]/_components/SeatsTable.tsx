@@ -1,12 +1,16 @@
 'use client'
 
 import React, { useState, useEffect } from "react";
-import { Movie, Showtime } from "@/entities";
+import { Movie, Showtime, User } from "@/entities";
 import OcupiedSeats from "@/actions/showtimes/OcupiedSeats";
 import updateShowtime from "@/actions/showtimes/update";
 import SeatsGrid from "./SeatsGrid";
 import ConfirmModal from "./ConfirmModal";
 import CreateTicket from "@/actions/tickets/create";
+import getCurrentUser from "@/actions/users/getCurrentUser";
+import TicketModal from "./TicketModal";
+import Link from "next/link";
+import { Button } from "@heroui/react";
 
 export default function SeatsTable({ movie, showtime }: { movie: Movie, showtime: Showtime }) {
     const rows = Array.from({ length: 14 }, (_, i) => String.fromCharCode(65 + i));
@@ -37,9 +41,19 @@ export default function SeatsTable({ movie, showtime }: { movie: Movie, showtime
         const newOcupiedSeats = [...ocupiedSeats, seatId];
         await updateShowtime(showtime.showtimeId, newOcupiedSeats);
         setOcupiedSeats(newOcupiedSeats);
-        await CreateTicket({
+        const user = await getCurrentUser();
+        if (!user) {
+            setLoading(false);
+            alert("No se pudo obtener el usuario actual.");
+            return;
+        }
+        const ticket = await CreateTicket({
             seat: seatId,
-            showtimeId: showtime.showtimeId
+            showtimeId: showtime.showtimeId,
+            userId: user.userId,
+            movieTittle: movie.movieTitle,
+            showtimeDate: showtime.showtimeDate,
+            room: Number(showtime.roomNumber)
         });
         setLoading(false);
         setSuccess(true);
@@ -75,7 +89,12 @@ export default function SeatsTable({ movie, showtime }: { movie: Movie, showtime
                 <div className="mt-2 text-blue-400">Actualizando asientos...</div>
             )}
             {success && (
-                <div className="mt-2 text-green-400">¡Asiento reservado correctamente!</div>
+                <div className="flex flex-col gap-5 mt-2 text-green-400">
+                    ¡Asiento reservado correctamente!
+                    <Link href="/dashboard/settings">
+                        <Button>Ver tus tickets</Button>
+                    </Link>
+                </div>
             )}
             <ConfirmModal
                 show={showModal && !!selectedSeat}

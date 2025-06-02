@@ -1,7 +1,6 @@
 import { Movie } from "@/entities";
 import ListMovieScroll from "./_components/movies/ListMoviesScroll";
 import { API_URL } from "@/constants";
-import { Button, Card, CardFooter, Image } from "@heroui/react";
 import HomeCard from "./_components/HomeCard";
 
 export default async function DashboardPage() {

@@ -1,7 +1,8 @@
-export default function SettingsPage(){
+import TicketsCard from "../_components/TicketCard";
+
+export default function SettingsPage() {
+
     return (
-        <div className="">
-            Hola
-        </div>
+        <TicketsCard/>
     )
 }
