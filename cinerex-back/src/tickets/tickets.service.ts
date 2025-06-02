@@ -30,6 +30,9 @@ export class TicketsService {
         const ticket = this.ticketRepository.findOne({
             where: {
                 ticketId: id,
+            },
+            relations: {
+                showtime: true
             }
         })
         return ticket;
@@ -39,7 +42,8 @@ export class TicketsService {
         const ticketToUpdate = await this.ticketRepository.preload({
             ticketId: id,
             ...updateTicketDto,
-            showtime: updateTicketDto.showtimeId !== undefined ? String(updateTicketDto.showtimeId) : undefined
+            showtime: updateTicketDto.showtimeId !== undefined ? String(updateTicketDto.showtimeId) : undefined,
+            user: updateTicketDto.userId !== undefined ? String(updateTicketDto.userId) : undefined
         })
         if(!ticketToUpdate) throw new NotFoundException();
         this.ticketRepository.save(ticketToUpdate);

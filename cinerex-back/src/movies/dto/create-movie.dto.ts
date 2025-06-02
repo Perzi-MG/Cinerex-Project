@@ -1,4 +1,4 @@
-import { IsBoolean, IsNumber, IsString, MaxLength } from "class-validator";
+import { IsBoolean, IsNumber, IsObject, IsOptional, IsString, MaxLength } from "class-validator";
 
 export class CreateMovieDto {
 
@@ -7,13 +7,13 @@ export class CreateMovieDto {
     movieTitle: string;
     @IsString()
     movieDescription: string;
-    @IsNumber()
-    movieDuration: number;
+    @IsString()
+    movieDuration: string;
     @IsString()
     movieRating: string;
-    @IsString()
+    @IsOptional()
     moviePhoto: string;
-    @IsBoolean()
-    isActive: boolean;
+    @IsString()
+    isActive: string;
 
 }

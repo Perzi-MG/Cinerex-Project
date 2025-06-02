@@ -13,9 +13,19 @@ export class Ticket {
         name: 'showtimeId'
     })
     showtime: Showtime | string;
+    @Column('text')
+    showtimeId: string;
     @ManyToOne(() => User, (user) => user.tickets)
     @JoinColumn({
         name: "userId"
     })
-    user: User | string;
+    user?: User | string;
+    @Column('text')
+    userId: string;
+    @Column('text')
+    movieTittle: string;
+    @Column('date')
+    showtimeDate: string;
+    @Column('int')
+    room: number;
 }

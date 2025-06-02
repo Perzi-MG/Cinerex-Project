@@ -8,22 +8,19 @@ export class Showtime{
     showtimeId: string;
     @Column('date')
     showtimeDate: string;
-    @Column('int')
-    price: number;
+    @Column('text')
+    price: string;
     @Column('simple-array', {nullable: true})
     ocupiedSeats?: string[];
-    @Column('int')
-    roomNumber: number;
-
+    @Column('text')
+    roomNumber: string;
+    @Column('text')
+    movieId: string;
+    @OneToMany(() => Ticket, (ticket) => ticket.showtime)
+    tickets?: Ticket[];
     @ManyToOne(() => Movie, (movie) => movie.showtimes)
     @JoinColumn({
         name: 'movieId'
     })
-    movie: Movie;
-
-    @Column()
-    movieId: string;
-
-    @OneToMany(() => Ticket, (ticket) => ticket.showtime)
-    tickets?: Ticket[];
+    movie: Movie | string;
 }

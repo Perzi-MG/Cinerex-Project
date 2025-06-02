@@ -20,14 +20,25 @@ export class ShowtimesService {
 
     findAll(movieId?: string) {
         if (movieId) {
-            return this.showtimeRepository.find({ where: { movieId } });
+            return this.showtimeRepository.find({ 
+                where: { 
+                    movie: { movieId } 
+                },
+                relations: {
+                    movie: true
+                }
+         });
         }
-        return this.showtimeRepository.find();
+        return this.showtimeRepository.find({
+        });
     }
     findOne(id: string) {
         const showtime = this.showtimeRepository.findOne({
             where: {
                 showtimeId: id
+            },
+            relations: {
+                movie: true
             }
         })
         return showtime;

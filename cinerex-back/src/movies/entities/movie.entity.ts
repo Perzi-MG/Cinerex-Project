@@ -10,14 +10,17 @@ export class Movie{
     movieTitle: string;
     @Column('text')
     movieDescription: string;
-    @Column('int')
-    movieDuration: number;
+    @Column('text')
+    movieDuration: string;
     @Column('text')
     movieRating: string;
-    @Column('text')
+    @Column({
+        type: 'text',
+        nullable: true
+    })
     moviePhoto: string;
-    @Column('boolean')
-    isActive: boolean;
+    @Column('text')
+    isActive: string;
 
     @OneToMany(() => Showtime, (showtime) => showtime.movie)
     showtimes: Showtime[];
